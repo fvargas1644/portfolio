@@ -1,4 +1,6 @@
 ---
+import Carousel from './Carousel.astro';
+
 const articles = [
   {
     title: "Cómo optimizar el rendimiento de aplicaciones React",
@@ -31,6 +33,22 @@ const articles = [
     image: "/placeholder.svg?height=250&width=400",
     category: "Accesibilidad",
     url: "#"
+  },
+  {
+    title: "Introducción a Astro: el framework para sitios web modernos",
+    excerpt: "Descubre cómo Astro puede ayudarte a construir sitios web más rápidos con menos JavaScript y una mejor experiencia de desarrollo.",
+    date: "20 de Octubre, 2022",
+    image: "/placeholder.svg?height=250&width=400",
+    category: "Frameworks",
+    url: "#"
+  },
+  {
+    title: "Cómo implementar animaciones eficientes en la web",
+    excerpt: "Aprende a crear animaciones fluidas y eficientes utilizando CSS y JavaScript sin afectar el rendimiento de tu sitio.",
+    date: "15 de Septiembre, 2022",
+    image: "/placeholder.svg?height=250&width=400",
+    category: "CSS",
+    url: "#"
   }
 ];
 ---
@@ -39,49 +57,70 @@ const articles = [
   <div class="container mx-auto px-4">
     <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Artículos Publicados</h2>
     
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {articles.map(article => (
-        <article class="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-          <a href={article.url} class="block">
-            <img 
-              src={article.image || "/placeholder.svg"} 
-              alt={article.title} 
-              class="w-full h-48 object-cover"
-            />
-          </a>
-          <div class="p-6">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">
-                {article.category}
-              </span>
-              <span class="text-gray-500 text-sm">{article.date}</span>
-            </div>
+    <div class="mb-8">
+      <Carousel id="articles-carousel" showArrows={true} showDots={true} autoplay={true} interval={6000} slidesToShow={3}>
+        {articles.map(article => (
+          <div class="carousel-slide px-2">
+            <article class="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full">
             <a href={article.url} class="block">
-              <h3 class="text-xl font-bold mb-2 hover:text-blue-600 transition-colors">{article.title}</h3>
+              <img 
+                src={article.image || "/placeholder.svg"} 
+                alt={article.title} 
+                class="w-full h-48 object-cover"
+              />
             </a>
-            <p class="text-gray-600 mb-4 line-clamp-3">{article.excerpt}</p>
-            <a 
-              href={article.url} 
-              class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
-            >
-              Leer artículo
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </a>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">
+                  {article.category}
+                </span>
+                <span class="text-gray-500 text-sm">{article.date}</span>
+              </div>
+              <a href={article.url} class="block">
+                <h3 class="text-xl font-bold mb-2 hover:text-blue-600 transition-colors">{article.title}</h3>
+              </a>
+              <p class="text-gray-600 mb-4 line-clamp-3">{article.excerpt}</p>
+              <a 
+                href={article.url} 
+                class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
+              >
+                Leer artículo
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+            </div>
+          </article>
           </div>
-        </article>
-      ))}
+        ))}
+      </Carousel>
     </div>
-    
-    <div class="text-center mt-12">
+    {/*<div class="text-center mt-12">
       <a 
         href="#" 
         class="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors inline-block"
       >
         Ver todos los artículos
       </a>
-    </div>
+    </div> */}
+    
   </div>
 </section>
+
+<style>
+  /* Responsive adjustments for carousel */
+  @media (max-width: 1024px) {
+    :global(.carousel-container[data-carousel-id="articles-carousel"] .carousel-slides > *) {
+      flex-basis: 50% !important;
+      min-width: 50% !important;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    :global(.carousel-container[data-carousel-id="articles-carousel"] .carousel-slides > *) {
+      flex-basis: 100% !important;
+      min-width: 100% !important;
+    }
+  }
+</style>
 

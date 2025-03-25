@@ -1,4 +1,6 @@
 ---
+import Carousel from './Carousel.astro';
+
 const featuredProjects = [
 	{
 		title: 'Diseño de E-commerce',
@@ -13,6 +15,14 @@ const featuredProjects = [
 		description: 'Sistema de gestión de tareas y proyectos para equipos de trabajo.',
 		image: '/placeholder.svg?height=300&width=500',
 		tags: ['Vue.js', 'Firebase', 'Tailwind CSS'],
+		link: '#',
+		featured: true
+	},
+	{
+		title: 'Dashboard Analytics',
+		description: 'Panel de control para visualización de datos y métricas de negocio.',
+		image: '/placeholder.svg?height=300&width=500',
+		tags: ['D3.js', 'Angular', 'Express', 'PostgreSQL'],
 		link: '#',
 		featured: true
 	},
@@ -34,86 +44,110 @@ const otherProjects = [
 		link: '#'
 	},
 	{
-		title: 'Dashboard Analytics',
-		description: 'Panel de control para visualización de datos y métricas de negocio.',
-		image: '/placeholder.svg?height=300&width=500',
-		tags: ['D3.js', 'Angular', 'Express', 'PostgreSQL'],
-		link: '#'
-	},
-	{
 		title: 'Plataforma Educativa',
 		description: 'Sistema de gestión de aprendizaje con cursos, evaluaciones y certificaciones.',
 		image: '/placeholder.svg?height=300&width=500',
 		tags: ['Next.js', 'GraphQL', 'MongoDB', 'AWS'],
 		link: '#'
+	},
+	{
+		title: 'Aplicación de Finanzas',
+		description: 'Herramienta para gestión de finanzas personales y seguimiento de gastos.',
+		image: '/placeholder.svg?height=300&width=500',
+		tags: ['React', 'Redux', 'Node.js', 'MySQL'],
+		link: '#'
+	},
+	{
+		title: 'Red Social Temática',
+		description: 'Plataforma social para conectar personas con intereses similares.',
+		image: '/placeholder.svg?height=300&width=500',
+		tags: ['Vue.js', 'Firebase', 'Vuex', 'Cloud Functions'],
+		link: '#'
+	},
+	{
+		title: 'API RESTful',
+		description: 'Desarrollo de API para integración de servicios de terceros.',
+		image: '/placeholder.svg?height=300&width=500',
+		tags: ['Node.js', 'Express', 'MongoDB', 'JWT'],
+		link: '#'
 	}
 ];
 ---
 
-<section id="projects" class="bg-gray-50">
+<section id="projects" class="bg-gray-50 py-16">
 	<div class="container mx-auto px-4">
 		<h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Mis Proyectos</h2>
 		
 		<!-- Proyectos Destacados -->
 		<h3 class="text-2xl font-semibold mb-8">Proyectos Destacados</h3>
-		<div class="grid md:grid-cols-2 gap-8 mb-16">
-			{featuredProjects.map(project => (
-				<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-					<img 
-						src={project.image || "/placeholder.svg"} 
-						alt={project.title} 
-						class="w-full h-48 object-cover"
-					>
-					<div class="p-6">
-						<h3 class="text-xl font-semibold mb-2">{project.title}</h3>
-						<p class="text-gray-600 mb-4">{project.description}</p>
-						<div class="flex flex-wrap gap-2 mb-4">
-							{project.tags.map(tag => (
-								<span class="px-3 py-1 bg-blue-100 text-blue-600 text-sm rounded-full">
-									{tag}
-								</span>
-							))}
+		
+		<div class="mb-16">
+			<Carousel id="featured-projects" showArrows={true} showDots={true} autoplay={true} interval={5000} slidesToShow={1}>
+				{featuredProjects.map(project => (
+					<div class="carousel-slide px-2">
+						<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow h-full">
+							<img 
+								src={project.image || "/placeholder.svg"} 
+								alt={project.title} 
+								class="w-full h-64 object-cover"
+							>
+							<div class="p-6">
+								<h3 class="text-xl font-semibold mb-2">{project.title}</h3>
+								<p class="text-gray-600 mb-4">{project.description}</p>
+								<div class="flex flex-wrap gap-2 mb-4">
+									{project.tags.map(tag => (
+										<span class="px-3 py-1 bg-blue-100 text-blue-600 text-sm rounded-full">
+											{tag}
+										</span>
+									))}
+								</div>
+								<a 
+									href={project.link} 
+									class="inline-block text-blue-600 hover:text-blue-800 transition-colors font-medium"
+								>
+									Ver proyecto →
+								</a>
+							</div>
 						</div>
-						<a 
-							href={project.link} 
-							class="inline-block text-blue-600 hover:text-blue-800 transition-colors font-medium"
-						>
-							Ver proyecto →
-						</a>
 					</div>
-				</div>
-			))}
+				))}
+			</Carousel>
 		</div>
 		
 		<!-- Otros Proyectos -->
 		<h3 class="text-2xl font-semibold mb-8">Otros Proyectos</h3>
-		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-			{otherProjects.map(project => (
-				<div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-					<img 
-						src={project.image || "/placeholder.svg"} 
-						alt={project.title} 
-						class="w-full h-40 object-cover"
-					>
-					<div class="p-4">
-						<h3 class="text-lg font-semibold mb-2">{project.title}</h3>
-						<p class="text-gray-600 mb-3 text-sm">{project.description}</p>
-						<div class="flex flex-wrap gap-1 mb-3">
-							{project.tags.map(tag => (
-								<span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-full">
-									{tag}
-								</span>
-							))}
+		
+		<div class="mb-8">
+			<Carousel id="other-projects" showArrows={true} showDots={true} slidesToShow={3}>
+				{otherProjects.map(project => (
+					<div class="carousel-slide px-2">
+						<div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full">
+							<img 
+								src={project.image || "/placeholder.svg"} 
+								alt={project.title} 
+								class="w-full h-40 object-cover"
+							>
+							<div class="p-4">
+								<h3 class="text-lg font-semibold mb-2">{project.title}</h3>
+								<p class="text-gray-600 mb-3 text-sm">{project.description}</p>
+								<div class="flex flex-wrap gap-1 mb-3">
+									{project.tags.map(tag => (
+										<span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-full">
+											{tag}
+										</span>
+									))}
+								</div>
+								<a 
+									href={project.link} 
+									class="inline-block text-blue-600 hover:text-blue-800 transition-colors text-sm font-medium"
+								>
+									Ver detalles →
+								</a>
+							</div>
 						</div>
-						<a 
-							href={project.link} 
-							class="inline-block text-blue-600 hover:text-blue-800 transition-colors text-sm font-medium"
-						>
-							Ver detalles →
-						</a>
 					</div>
-				</div>
-			))}
+				))}
+			</Carousel>
 		</div>
 		
 		<div class="text-center mt-12">
@@ -126,4 +160,21 @@ const otherProjects = [
 		</div>
 	</div>
 </section>
+
+<style>
+  /* Responsive adjustments for carousel */
+  @media (max-width: 768px) {
+    :global(.carousel-container[data-carousel-id="other-projects"] .carousel-slides > *) {
+      flex-basis: 50% !important;
+      min-width: 50% !important;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    :global(.carousel-container[data-carousel-id="other-projects"] .carousel-slides > *) {
+      flex-basis: 100% !important;
+      min-width: 100% !important;
+    }
+  }
+</style>
 
