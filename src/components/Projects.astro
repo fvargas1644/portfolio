@@ -1,0 +1,77 @@
+---
+const projects = [
+	{
+		title: 'Diseño de E-commerce',
+		description: 'Plataforma de comercio electrónico con carrito de compras y pasarela de pagos.',
+		image: '/placeholder.svg?height=300&width=500',
+		tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+		link: '#'
+	},
+	{
+		title: 'Aplicación de Gestión',
+		description: 'Sistema de gestión de tareas y proyectos para equipos de trabajo.',
+		image: '/placeholder.svg?height=300&width=500',
+		tags: ['Vue.js', 'Firebase', 'Tailwind CSS'],
+		link: '#'
+	},
+	{
+		title: 'Sitio Web Corporativo',
+		description: 'Sitio web responsive para empresa de tecnología con panel de administración.',
+		image: '/placeholder.svg?height=300&width=500',
+		tags: ['HTML/CSS', 'JavaScript', 'PHP', 'MySQL'],
+		link: '#'
+	},
+	{
+		title: 'Aplicación Móvil',
+		description: 'App móvil para seguimiento de hábitos y productividad personal.',
+		image: '/placeholder.svg?height=300&width=500',
+		tags: ['React Native', 'Redux', 'Firebase'],
+		link: '#'
+	}
+];
+---
+
+<section id="projects" class="bg-gray-50">
+	<div class="container mx-auto px-4">
+		<h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Mis Proyectos</h2>
+		
+		<div class="grid md:grid-cols-2 gap-8">
+			{projects.map(project => (
+				<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+					<img 
+						src={project.image || "/placeholder.svg"} 
+						alt={project.title} 
+						class="w-full h-48 object-cover"
+					>
+					<div class="p-6">
+						<h3 class="text-xl font-semibold mb-2">{project.title}</h3>
+						<p class="text-gray-600 mb-4">{project.description}</p>
+						<div class="flex flex-wrap gap-2 mb-4">
+							{project.tags.map(tag => (
+								<span class="px-3 py-1 bg-blue-100 text-blue-600 text-sm rounded-full">
+									{tag}
+								</span>
+							))}
+						</div>
+						<a 
+							href={project.link} 
+							class="inline-block text-blue-600 hover:text-blue-800 transition-colors font-medium"
+						>
+							Ver proyecto →
+						</a>
+					</div>
+				</div>
+			))}
+		</div>
+		
+		<div class="text-center mt-12">
+			<a 
+				href="#" 
+				class="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors inline-block"
+			>
+				Ver más proyectos
+			</a>
+		</div>
+	</div>
+</section>
+

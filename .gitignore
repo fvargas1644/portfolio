@@ -1,0 +1,67 @@
+# build output
+dist/
+.output/
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+.env.local
+.env.development
+
+# macOS-specific files
+.DS_Store
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Vercel
+.vercel/
+
+# Netlify
+.netlify/
+
+# Cloudflare
+.cloudflare/
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+# Lock files (opcional, depende de tu preferencia)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Archivos temporales
+*.tmp
+*.temp
+.cache/
+
+# Archivos de respaldo
+*.bak
+*.backup
+*~
+

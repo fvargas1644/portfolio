@@ -1,0 +1,45 @@
+---
+const skills = [
+	{
+		category: 'Frontend',
+		items: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Vue.js', 'Tailwind CSS', 'SASS']
+	},
+	{
+		category: 'Backend',
+		items: ['Node.js', 'Express', 'PHP', 'Python', 'MongoDB', 'MySQL', 'PostgreSQL']
+	},
+	{
+		category: 'Herramientas',
+		items: ['Git', 'GitHub', 'VS Code', 'Figma', 'Adobe XD', 'Webpack', 'Docker']
+	},
+	{
+		category: 'Soft Skills',
+		items: ['Trabajo en equipo', 'Comunicación', 'Resolución de problemas', 'Gestión del tiempo', 'Adaptabilidad']
+	}
+];
+---
+
+<section id="skills" class="bg-white">
+	<div class="container mx-auto px-4">
+		<h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Mis Habilidades</h2>
+		
+		<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+			{skills.map(skillGroup => (
+				<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+					<h3 class="text-xl font-semibold mb-4 text-blue-600">{skillGroup.category}</h3>
+					<ul class="space-y-2">
+						{skillGroup.items.map(skill => (
+							<li class="flex items-center gap-2">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+									<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+								</svg>
+								{skill}
+							</li>
+						))}
+					</ul>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
