@@ -3,11 +3,11 @@ import Carousel from './Carousel.astro';
 
 const featuredProjects = [
 	{
-		title: 'Diseño de E-commerce',
-		description: 'Plataforma de comercio electrónico con carrito de compras y pasarela de pagos.',
+		title: 'VisiónInversora',
+		description: 'Aplicación web que muestra precios estimados con formulas de las acciones del mercado de valores en tiempo real',
 		image: '/placeholder.svg?height=300&width=500',
-		tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-		link: '#',
+		tags: ['React', 'TipeScript', 'NextJS', 'Modules CSS'],
+		link: 'https://vision-inversora.vercel.app/',
 		featured: true
 	},
 	{
@@ -17,15 +17,7 @@ const featuredProjects = [
 		tags: ['Vue.js', 'Firebase', 'Tailwind CSS'],
 		link: '#',
 		featured: true
-	},
-	{
-		title: 'Dashboard Analytics',
-		description: 'Panel de control para visualización de datos y métricas de negocio.',
-		image: '/placeholder.svg?height=300&width=500',
-		tags: ['D3.js', 'Angular', 'Express', 'PostgreSQL'],
-		link: '#',
-		featured: true
-	},
+	}
 ];
 
 const otherProjects = [
@@ -82,7 +74,7 @@ const otherProjects = [
 		<h3 class="text-2xl font-semibold mb-8">Proyectos Destacados</h3>
 		
 		<div class="mb-16">
-			<Carousel id="featured-projects" showArrows={true} showDots={true} autoplay={true} interval={5000} slidesToShow={1}>
+			<Carousel id="featured-projects" showArrows={true} showDots={false} autoplay={true} interval={5000} slidesToShow={1}>
 				{featuredProjects.map(project => (
 					<div class="carousel-slide px-2">
 						<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow h-full">
