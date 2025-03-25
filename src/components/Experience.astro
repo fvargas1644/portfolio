@@ -1,0 +1,71 @@
+---
+const experiences = [
+  {
+    position: "Desarrollador Frontend Senior",
+    company: "Tech Solutions Inc.",
+    period: "Enero 2021 - Presente",
+    description: "Desarrollo de aplicaciones web utilizando React, Next.js y TypeScript. Implementación de arquitecturas escalables y optimización de rendimiento. Liderazgo de equipo de 4 desarrolladores.",
+    achievements: [
+      "Rediseño completo de la plataforma principal, mejorando la velocidad de carga en un 40%",
+      "Implementación de sistema de diseño unificado con componentes reutilizables",
+      "Integración de CI/CD para automatizar pruebas y despliegues"
+    ]
+  },
+  {
+    position: "Desarrollador Web",
+    company: "Digital Agency",
+    period: "Marzo 2018 - Diciembre 2020",
+    description: "Desarrollo de sitios web y aplicaciones para clientes de diversos sectores. Trabajo con Vue.js, Nuxt y sistemas de gestión de contenidos.",
+    achievements: [
+      "Desarrollo de 15+ sitios web para clientes de alto perfil",
+      "Creación de panel de administración personalizado para gestión de contenidos",
+      "Optimización SEO que resultó en un aumento del 60% en tráfico orgánico"
+    ]
+  },
+  {
+    position: "Desarrollador Frontend Junior",
+    company: "StartUp Innovation",
+    period: "Junio 2016 - Febrero 2018",
+    description: "Desarrollo de interfaces de usuario con HTML, CSS y JavaScript. Colaboración en el diseño y la implementación de nuevas características.",
+    achievements: [
+      "Participación en el rediseño completo de la aplicación principal",
+      "Implementación de diseño responsive para mejorar la experiencia en dispositivos móviles",
+      "Colaboración en la migración de jQuery a un framework moderno"
+    ]
+  }
+];
+---
+
+<section id="experience" class="bg-gray-50">
+  <div class="container mx-auto px-4 py-16">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Mi Experiencia</h2>
+    
+    <div class="max-w-4xl mx-auto">
+      <div class="relative border-l-2 border-blue-300 pl-8 ml-4">
+        {experiences.map((exp, index) => (
+          <div class={`mb-12 ${index === experiences.length - 1 ? '' : ''}`}>
+            <div class="absolute w-4 h-4 bg-blue-600 rounded-full -left-[9px] mt-1.5"></div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <div class="flex flex-wrap justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">{exp.position}</h3>
+                <span class="text-sm font-medium text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
+                  {exp.period}
+                </span>
+              </div>
+              <p class="text-lg font-medium text-blue-600 mb-3">{exp.company}</p>
+              <p class="text-gray-600 mb-4">{exp.description}</p>
+              
+              <h4 class="font-semibold text-gray-800 mb-2">Logros destacados:</h4>
+              <ul class="list-disc pl-5 space-y-1 text-gray-600">
+                {exp.achievements.map(achievement => (
+                  <li>{achievement}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+

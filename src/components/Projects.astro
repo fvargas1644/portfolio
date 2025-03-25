@@ -1,19 +1,24 @@
 ---
-const projects = [
+const featuredProjects = [
 	{
 		title: 'Diseño de E-commerce',
 		description: 'Plataforma de comercio electrónico con carrito de compras y pasarela de pagos.',
 		image: '/placeholder.svg?height=300&width=500',
 		tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-		link: '#'
+		link: '#',
+		featured: true
 	},
 	{
 		title: 'Aplicación de Gestión',
 		description: 'Sistema de gestión de tareas y proyectos para equipos de trabajo.',
 		image: '/placeholder.svg?height=300&width=500',
 		tags: ['Vue.js', 'Firebase', 'Tailwind CSS'],
-		link: '#'
+		link: '#',
+		featured: true
 	},
+];
+
+const otherProjects = [
 	{
 		title: 'Sitio Web Corporativo',
 		description: 'Sitio web responsive para empresa de tecnología con panel de administración.',
@@ -27,6 +32,20 @@ const projects = [
 		image: '/placeholder.svg?height=300&width=500',
 		tags: ['React Native', 'Redux', 'Firebase'],
 		link: '#'
+	},
+	{
+		title: 'Dashboard Analytics',
+		description: 'Panel de control para visualización de datos y métricas de negocio.',
+		image: '/placeholder.svg?height=300&width=500',
+		tags: ['D3.js', 'Angular', 'Express', 'PostgreSQL'],
+		link: '#'
+	},
+	{
+		title: 'Plataforma Educativa',
+		description: 'Sistema de gestión de aprendizaje con cursos, evaluaciones y certificaciones.',
+		image: '/placeholder.svg?height=300&width=500',
+		tags: ['Next.js', 'GraphQL', 'MongoDB', 'AWS'],
+		link: '#'
 	}
 ];
 ---
@@ -35,8 +54,10 @@ const projects = [
 	<div class="container mx-auto px-4">
 		<h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Mis Proyectos</h2>
 		
-		<div class="grid md:grid-cols-2 gap-8">
-			{projects.map(project => (
+		<!-- Proyectos Destacados -->
+		<h3 class="text-2xl font-semibold mb-8">Proyectos Destacados</h3>
+		<div class="grid md:grid-cols-2 gap-8 mb-16">
+			{featuredProjects.map(project => (
 				<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
 					<img 
 						src={project.image || "/placeholder.svg"} 
@@ -58,6 +79,37 @@ const projects = [
 							class="inline-block text-blue-600 hover:text-blue-800 transition-colors font-medium"
 						>
 							Ver proyecto →
+						</a>
+					</div>
+				</div>
+			))}
+		</div>
+		
+		<!-- Otros Proyectos -->
+		<h3 class="text-2xl font-semibold mb-8">Otros Proyectos</h3>
+		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+			{otherProjects.map(project => (
+				<div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+					<img 
+						src={project.image || "/placeholder.svg"} 
+						alt={project.title} 
+						class="w-full h-40 object-cover"
+					>
+					<div class="p-4">
+						<h3 class="text-lg font-semibold mb-2">{project.title}</h3>
+						<p class="text-gray-600 mb-3 text-sm">{project.description}</p>
+						<div class="flex flex-wrap gap-1 mb-3">
+							{project.tags.map(tag => (
+								<span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-full">
+									{tag}
+								</span>
+							))}
+						</div>
+						<a 
+							href={project.link} 
+							class="inline-block text-blue-600 hover:text-blue-800 transition-colors text-sm font-medium"
+						>
+							Ver detalles →
 						</a>
 					</div>
 				</div>

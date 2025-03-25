@@ -1,0 +1,87 @@
+---
+const articles = [
+  {
+    title: "Cómo optimizar el rendimiento de aplicaciones React",
+    excerpt: "Aprende técnicas avanzadas para mejorar la velocidad y eficiencia de tus aplicaciones React con estos consejos prácticos.",
+    date: "15 de Marzo, 2023",
+    image: "/placeholder.svg?height=250&width=400",
+    category: "Desarrollo Frontend",
+    url: "#"
+  },
+  {
+    title: "Introducción a TypeScript para desarrolladores JavaScript",
+    excerpt: "Descubre cómo TypeScript puede mejorar tu flujo de trabajo y ayudarte a escribir código más robusto y mantenible.",
+    date: "28 de Enero, 2023",
+    image: "/placeholder.svg?height=250&width=400",
+    category: "JavaScript",
+    url: "#"
+  },
+  {
+    title: "Arquitectura de microservicios con Node.js",
+    excerpt: "Una guía completa sobre cómo diseñar, implementar y mantener una arquitectura de microservicios utilizando Node.js y Docker.",
+    date: "10 de Diciembre, 2022",
+    image: "/placeholder.svg?height=250&width=400",
+    category: "Backend",
+    url: "#"
+  },
+  {
+    title: "Mejores prácticas de accesibilidad web en 2023",
+    excerpt: "Aprende a crear sitios web inclusivos que cumplan con los estándares WCAG y proporcionen una mejor experiencia para todos los usuarios.",
+    date: "5 de Noviembre, 2022",
+    image: "/placeholder.svg?height=250&width=400",
+    category: "Accesibilidad",
+    url: "#"
+  }
+];
+---
+
+<section id="articles" class="bg-white py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Artículos Publicados</h2>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {articles.map(article => (
+        <article class="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+          <a href={article.url} class="block">
+            <img 
+              src={article.image || "/placeholder.svg"} 
+              alt={article.title} 
+              class="w-full h-48 object-cover"
+            />
+          </a>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">
+                {article.category}
+              </span>
+              <span class="text-gray-500 text-sm">{article.date}</span>
+            </div>
+            <a href={article.url} class="block">
+              <h3 class="text-xl font-bold mb-2 hover:text-blue-600 transition-colors">{article.title}</h3>
+            </a>
+            <p class="text-gray-600 mb-4 line-clamp-3">{article.excerpt}</p>
+            <a 
+              href={article.url} 
+              class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
+            >
+              Leer artículo
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+    
+    <div class="text-center mt-12">
+      <a 
+        href="#" 
+        class="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors inline-block"
+      >
+        Ver todos los artículos
+      </a>
+    </div>
+  </div>
+</section>
+
