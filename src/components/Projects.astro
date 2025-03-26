@@ -1,168 +1,331 @@
 ---
-import Carousel from './Carousel.astro';
+import { preview } from "astro";
+import Carousel from "./Carousel.astro";
 
 const featuredProjects = [
 	{
-		title: 'VisiónInversora',
-		description: 'Aplicación web que calcula y muestra en tiempo real precios estimados de acciones del mercado de valores mediante fórmulas.',
-		image: '/VisionInversora.webp?height=300&width=500',
-		tags: ['React', 'TipeScript', 'NextJS', 'Modules CSS', 'Vercel', 'Web Scraping'],
-		preview: 'https://vision-inversora.vercel.app/',
-		code: 'https://github.com/fvargas1644/vision-inversora',
-		featured: true
+		title: "VisiónInversora",
+		description:
+			"Aplicación web que calcula y muestra en tiempo real precios estimados de acciones del mercado de valores mediante fórmulas.",
+		image: "/VisionInversora.webp?height=300&width=500",
+		tags: [
+			"React",
+			"TipeScript",
+			"NextJS",
+			"Modules CSS",
+			"Vercel",
+			"Web Scraping",
+		],
+		preview: "https://vision-inversora.vercel.app/",
+		code: "https://github.com/fvargas1644/vision-inversora",
+		featured: true,
 	},
 	{
-		title: 'WazuhAI',
-		description: 'Se integra Wazuh con modelos LLM, como GPT, para analizar eventos y detectar posibles amenazas.',
-		image: '/WazuhAI.webp?height=300&width=500',
-		tags: ['Python', 'OpenAI', 'Wazuh', "LLMs"],
+		title: "WazuhAI",
+		description:
+			"Se integra Wazuh con modelos LLM, como GPT, para analizar eventos y detectar posibles amenazas.",
+		image: "/WazuhAI.webp?height=300&width=500",
+		tags: ["Python", "OpenAI", "Wazuh", "LLMs"],
 		preview: null,
 		code: null,
-		featured: true
-	}
+		featured: true,
+	},
 ];
 
 const otherProjects = [
 	{
-		title: 'Clasificador de Textos - Machine Learning',
-		description: 'Se enfoca en la clasificación de textos ODS de la ONU.',
-		image: '/ModeloClasificadorTextos.webp?height=300&width=500',
-		tags: ['Machine Learning', 'IA','Python', 'RandomForestClassifier', 'LogisticRegression', 'Matplotlib', 'Sklearn', 'Tokenización', 'TF-IDF'],
-		link: '#'
+		title: "Clasificador de Textos - Machine Learning",
+		description: "Se enfoca en la clasificación de textos ODS de la ONU.",
+		image: "/ModeloClasificadorTextos.webp?height=300&width=500",
+		tags: [
+			"Machine Learning",
+			"IA",
+			"Python",
+			"RandomForestClassifier",
+			"LogisticRegression",
+			"Matplotlib",
+			"Sklearn",
+			"Tokenización",
+			"TF-IDF",
+		],
+		code: 'https://github.com/fvargas1644/IA-projects/blob/main/text-sorter/text-sorter.ipynb',
+		preview: null,
 	},
 	{
-		title: 'RelayNetCommander - Herramienta para pentesters',
-		description: 'Una herramienta diseñana para la automatización del ataque NTLM Relay.',
-		image: '/RelayNetCommander.webp?height=300&width=500',
-		tags: ['Python', 'CMD Windows', 'Tareas Programadas Win', 'Sockets', 'Netcat'],
-		link: '#'
+		title: "RelayNetCommander - Herramienta para pentesters",
+		description:
+			"Una herramienta diseñana para la automatización del ataque NTLM Relay.",
+		image: "/RelayNetCommander.webp?height=300&width=500",
+		tags: [
+			"Python",
+			"CMD Windows",
+			"Tareas Programadas Win",
+			"Sockets",
+			"Netcat",
+		],
+		code: 'https://github.com/fvargas1644/RelayNetCommander',
+		preview: null,
 	},
 	{
-		title: 'Modelo de Paleta de Colores - Machine Learning',
-		description: 'Con algoritmos de agrupación se extraen los colores dominantes de una imagen.',
-		image: '/ModeloPaletaColores.webp?height=300&width=500',
-		tags: ['Machine Learning', 'IA','Python', 'k-Means', 'MeanShift', 'DBSCAN','t-SNE', 'PCA'],
-		link: '#'
+		title: "Modelo de Paleta de Colores - Machine Learning",
+		description:
+			"Con algoritmos de agrupación se extraen los colores dominantes de una imagen.",
+		image: "/ModeloPaletaColores.webp?height=300&width=500",
+		tags: [
+			"Machine Learning",
+			"IA",
+			"Python",
+			"k-Means",
+			"MeanShift",
+			"DBSCAN",
+			"t-SNE",
+			"PCA",
+		],
+		code: 'https://github.com/fvargas1644/IA-projects/blob/main/color-palette-model/color%20palette%20model.ipynb',
+		preview: null,
 	},
 	{
-		title: 'MiniTrelo',
-		description: 'Clon de mini Trello con React',
-		image: '/MiniTrello.webp?height=300&width=500',
-		tags: ['React', 'CRUD', 'Drag and Drop', 'LocalStorage'],
-		link: '#'
+		title: "MiniTrelo",
+		description: "Clon de mini Trello con React",
+		image: "/MiniTrello.webp?height=300&width=500",
+		tags: ["React", "CRUD", "Drag and Drop", "LocalStorage"],
+		code: 'https://github.com/fvargas1644/mini-trello',
+		preview: 'https://minitrello-894af.web.app/',
 	},
 	{
-		title: 'Clasificación de Vino - Machine Learning',
-		description: 'Plataforma social para conectar personas con intereses similares.',
-		image: '/ModeloClasificadorVino.webp?height=300&width=500',
-		tags: ['Machine Learning', 'IA','Python', 'RandomForestClassifier', 'DecisionTree', 'LogisticRegression', 'Matplotlib', 'Sklearn'],
-		link: '#'
+		title: "Clasificación de Vino - Machine Learning",
+		description:
+			"Plataforma social para conectar personas con intereses similares.",
+		image: "/ModeloClasificadorVino.webp?height=300&width=500",
+		tags: [
+			"Machine Learning",
+			"IA",
+			"Python",
+			"RandomForestClassifier",
+			"DecisionTree",
+			"LogisticRegression",
+			"Matplotlib",
+			"Sklearn",
+		],
+		code: 'https://github.com/fvargas1644/IA-projects/blob/main/wine-quality/wine-quality.ipynb',
+		preview: null,
 	},
 	{
-		title: 'Yahoo Finance en JS',
-		description: 'Se crea una librería la cual extrae datos de Yahoo Finance.',
-		image: '/YFinance.webp?height=300&width=500',
-		tags: ['JS', 'Fetch', 'YFinance'],
-		link: '#'
-	}
+		title: "Yahoo Finance en JS",
+		description:
+			"Se crea una librería la cual extrae datos de Yahoo Finance.",
+		image: "/YFinance.webp?height=300&width=500",
+		tags: ["JS", "Fetch", "YFinance"],
+		code: 'https://github.com/fvargas1644/vision-inversora/tree/main/src/lib/yfinance-js',
+		preview: null,
+	},
 ];
 ---
 
 <section id="projects" class="bg-gray-50 py-16">
 	<div class="container mx-auto px-4">
-		<h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Mis Proyectos</h2>
-		
+		<h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
+			Mis Proyectos
+		</h2>
+
 		<!-- Proyectos Destacados -->
 		<h3 class="text-2xl font-semibold mb-8">Proyectos Destacados</h3>
-		
+
 		<div class="mb-16">
-			<Carousel id="featured-projects" showArrows={false} showDots={false} autoplay={false} slidesToShow={2}>
-				{featuredProjects.map(project => (
-					<div class="carousel-slide px-2">
-						<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow h-full">
-							<img 
-								src={project.image || "/placeholder.svg"} 
-								alt={project.title} 
-								class="w-full h-64 object-cover"
-							>
-							<div class="flex items-end justify-center mt-4 gap-x-4">
-									{project.preview &&
-										<a target="_blank" href={project.preview} role="link" class="inline-flex bg-gray-100 text-gray-800 border-gray-300 items-center justify-center gap-2 px-3 py-2 space-x-2 text-base transition dark:text-white dark:bg-gray-800 border dark:border-gray-600 focus-visible:ring-yellow-500/80 text-md hover:bg-gray-800 hover:border-gray-900 group max-w-fit rounded-xl hover:text-white focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black">  
-											<svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-												<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-												<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+			<Carousel
+				id="featured-projects"
+				showArrows={false}
+				showDots={false}
+				autoplay={false}
+				slidesToShow={2}
+			>
+				{
+					featuredProjects.map((project) => (
+						<div class="carousel-slide px-2">
+							<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow h-full">
+								<img
+									src={project.image || "/placeholder.svg"}
+									alt={project.title}
+									class="w-full h-64 object-cover"
+								/>
+								<div class="pl-4 flex flex items-end justify-start mt-4 gap-x-4">
+									{project.preview && (
+										<a
+											target="_blank"
+											href={project.preview}
+											role="link"
+											class="inline-flex bg-gray-100 text-gray-800 border-gray-300 items-center justify-center gap-2 px-3 py-2 space-x-2 text-base transition dark:text-white dark:bg-gray-800 border dark:border-gray-600 focus-visible:ring-yellow-500/80 text-md hover:bg-gray-800 hover:border-gray-900 group max-w-fit rounded-xl hover:text-white focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black"
+										>
+											<svg
+												class="size-4"
+												xmlns="http://www.w3.org/2000/svg"
+												width="24"
+												height="24"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+											>
+												<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+												<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
 											</svg>
 											Preview
 										</a>
-									}
-									{project.code &&
-										<a target="_blank" href={project.code} role="link" class="inline-flex bg-gray-100 text-gray-800 border-gray-300 items-center justify-center gap-2 px-3 py-2 space-x-2 text-base transition dark:text-white dark:bg-gray-800 border dark:border-gray-600 focus-visible:ring-yellow-500/80 text-md hover:bg-gray-800 hover:border-gray-900 group max-w-fit rounded-xl hover:text-white focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black">  
-											<svg class="size-6" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-												<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-												<path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path>
+									)}
+									{project.code && (
+										<a
+											target="_blank"
+											href={project.code}
+											role="link"
+											class="inline-flex bg-gray-100 text-gray-800 border-gray-300 items-center justify-center gap-2 px-3 py-2 space-x-2 text-base transition dark:text-white dark:bg-gray-800 border dark:border-gray-600 focus-visible:ring-yellow-500/80 text-md hover:bg-gray-800 hover:border-gray-900 group max-w-fit rounded-xl hover:text-white focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black"
+										>
+											<svg
+												class="size-6"
+												xmlns="http://www.w3.org/2000/svg"
+												width="20"
+												height="20"
+												viewBox="0 0 24 24"
+												stroke-width="2"
+												stroke="currentColor"
+												fill="none"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+											>
+												<path
+													stroke="none"
+													d="M0 0h24v24H0z"
+													fill="none"
+												/>
+												<path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
 											</svg>
 											Code
 										</a>
-									}
+									)}
 								</div>
-							<div class="p-6">
-								<h3 class="text-xl font-semibold mb-2">{project.title}</h3>
-								<p class="text-gray-600 mb-4">{project.description}</p>
-								<div class="flex flex-wrap gap-2 mb-4">
-									{project.tags.map(tag => (
-										<span class="px-3 py-1 bg-blue-100 text-blue-600 text-sm rounded-full">
-											{tag}
-										</span>
-									))}
+								<div class="p-6">
+									<h3 class="text-xl font-semibold mb-2">
+										{project.title}
+									</h3>
+									<p class="text-gray-600 mb-4">
+										{project.description}
+									</p>
+									<div class="flex flex-wrap gap-2 mb-4">
+										{project.tags.map((tag) => (
+											<span class="px-3 py-1 bg-blue-100 text-blue-600 text-sm rounded-full">
+												{tag}
+											</span>
+										))}
+									</div>
 								</div>
-								
-								
 							</div>
 						</div>
-					</div>
-				))}
+					))
+				}
 			</Carousel>
 		</div>
-		
+
 		<!-- Otros Proyectos -->
 		<h3 class="text-2xl font-semibold mb-8">Otros Proyectos</h3>
-		
+
 		<div class="mb-8">
-			<Carousel id="other-projects" showArrows={true} showDots={true} slidesToShow={3}>
-				{otherProjects.map(project => (
-					<div class="carousel-slide px-2">
-						<div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full">
-							<img 
-								src={project.image || "/placeholder.svg"} 
-								alt={project.title} 
-								class="w-full h-40 object-cover"
-							>
-							<div class="p-4">
-								<h3 class="text-lg font-semibold mb-2">{project.title}</h3>
-								<p class="text-gray-600 mb-3 text-sm">{project.description}</p>
-								<div class="flex flex-wrap gap-1 mb-3">
-									{project.tags.map(tag => (
-										<span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-full">
-											{tag}
-										</span>
-									))}
+			<Carousel
+				id="other-projects"
+				showArrows={true}
+				showDots={true}
+				slidesToShow={3}
+			>
+				{
+					otherProjects.map((project) => (
+						<div class="carousel-slide px-2">
+							<div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full">
+								<img
+									src={project.image || "/placeholder.svg"}
+									alt={project.title}
+									class="w-full h-40 object-cover"
+								/>
+								<div class="pl-4 flex items-end justify-start mt-4 gap-x-4">
+									{project.preview && (
+										<a
+											target="_blank"
+											href={project.preview}
+											role="link"
+											class="inline-flex bg-gray-100 text-gray-800 border-gray-300 items-center justify-center gap-2 px-3 py-2 space-x-2 text-base transition dark:text-white dark:bg-gray-800 border dark:border-gray-600 focus-visible:ring-yellow-500/80 text-md hover:bg-gray-800 hover:border-gray-900 group max-w-fit rounded-xl hover:text-white focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black"
+										>
+											<svg
+												class="size-4"
+												xmlns="http://www.w3.org/2000/svg"
+												width="24"
+												height="24"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+											>
+												<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+												<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+											</svg>
+											Preview
+										</a>
+									)}
+									{project.code && (
+										<a
+											target="_blank"
+											href={project.code}
+											role="link"
+											class="inline-flex bg-gray-100 text-gray-800 border-gray-300 items-center justify-center gap-2 px-3 py-2 space-x-2 text-base transition dark:text-white dark:bg-gray-800 border dark:border-gray-600 focus-visible:ring-yellow-500/80 text-md hover:bg-gray-800 hover:border-gray-900 group max-w-fit rounded-xl hover:text-white focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black"
+										>
+											<svg
+												class="size-6"
+												xmlns="http://www.w3.org/2000/svg"
+												width="20"
+												height="20"
+												viewBox="0 0 24 24"
+												stroke-width="2"
+												stroke="currentColor"
+												fill="none"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+											>
+												<path
+													stroke="none"
+													d="M0 0h24v24H0z"
+													fill="none"
+												/>
+												<path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+											</svg>
+											Code
+										</a>
+									)}
 								</div>
-								<a 
-									href={project.link} 
-									class="inline-block text-blue-600 hover:text-blue-800 transition-colors text-sm font-medium"
-								>
-									Ver detalles →
-								</a>
+								<div class="p-4">
+									<h3 class="text-lg font-semibold mb-2">
+										{project.title}
+									</h3>
+									<p class="text-gray-600 mb-3 text-sm">
+										{project.description}
+									</p>
+									<div class="flex flex-wrap gap-1 mb-3">
+										{project.tags.map((tag) => (
+											<span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-full">
+												{tag}
+											</span>
+										))}
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-				))}
+					))
+				}
 			</Carousel>
 		</div>
-		
+
 		<div class="text-center mt-12">
-			<a 
-				href="#" 
+			<a
+				href="#"
 				class="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors inline-block"
 			>
 				Ver más proyectos
@@ -172,19 +335,26 @@ const otherProjects = [
 </section>
 
 <style>
-  /* Responsive adjustments for carousel */
-  @media (max-width: 768px) {
-    :global(.carousel-container[data-carousel-id="other-projects"] .carousel-slides > *) {
-      flex-basis: 50% !important;
-      min-width: 50% !important;
-    }
-  }
-  
-  @media (max-width: 640px) {
-    :global(.carousel-container[data-carousel-id="other-projects"] .carousel-slides > *) {
-      flex-basis: 100% !important;
-      min-width: 100% !important;
-    }
-  }
-</style>
+	/* Responsive adjustments for carousel 
+	@media (max-width: 768px) {
+		:global(
+				.carousel-container[data-carousel-id="other-projects"]
+					.carousel-slides
+					> *
+			) {
+			flex-basis: 50% !important;
+			min-width: 50% !important;
+		}
+	}
 
+	@media (max-width: 640px) {
+		:global(
+				.carousel-container[data-carousel-id="other-projects"]
+					.carousel-slides
+					> *
+			) {
+			flex-basis: 100% !important;
+			min-width: 100% !important;
+		}
+	}*/
+</style>
