@@ -5,7 +5,11 @@ interface Props {
   showArrows?: boolean;
   autoplay?: boolean;
   interval?: number;
-  slidesToShow?: number;
+  slidesToShowResponsive?: {
+    mobile: number,
+    tablet: number,
+    destok: number
+  }; 
 }
 
 const { 
@@ -14,8 +18,14 @@ const {
   showArrows = true, 
   autoplay = true, 
   interval = 5000,
-  slidesToShow = 1
+  slidesToShowResponsive = {
+    mobile: 1,
+    tablet: 2,
+    destok: 3
+  }
 } = Astro.props;
+
+
 ---
 
 <div class="carousel-container relative" data-carousel-id={id}>
@@ -53,161 +63,175 @@ const {
   )}
 </div>
 
-<script define:vars={{ id, autoplay, interval, slidesToShow }}>
-  document.addEventListener('DOMContentLoaded', () => {
-    const container = document.querySelector(`[data-carousel-id="${id}"]`);
-    if (!container) return;
-    
-    const track = container.querySelector('.carousel-slides');
-    const slides = Array.from(track.children);
-    const dotsContainer = container.querySelector('.carousel-dots');
-    const prevButton = container.querySelector('.carousel-prev');
-    const nextButton = container.querySelector('.carousel-next');
-    
-    let currentIndex = 0;
-    let autoplayInterval;
-    
-    // Clone slides for infinite loop if needed
-    if (slides.length > 1) {
-      // Add clones at the end
-      for (let i = 0; i < slidesToShow; i++) {
-        const clone = slides[i].cloneNode(true);
-        track.appendChild(clone);
-      }
-      
-      // Add clones at the beginning
-      for (let i = slides.length - 1; i >= slides.length - slidesToShow; i--) {
-        const clone = slides[i].cloneNode(true);
-        track.insertBefore(clone, track.firstChild);
-      }
+<script define:vars={{ id, autoplay, interval, slidesToShowResponsive }}>
+
+document.addEventListener('DOMContentLoaded', () => {
+  const container = document.querySelector(`[data-carousel-id="${id}"]`);
+  if (!container) return;
+  
+  const track = container.querySelector('.carousel-slides');
+  const slides = Array.from(track.children);
+  const dotsContainer = container.querySelector('.carousel-dots');
+  const prevButton = container.querySelector('.carousel-prev');
+  const nextButton = container.querySelector('.carousel-next');
+  
+  let currentIndex = 0;
+  let autoplayInterval;
+  let slidesToShow = getSlidesToShow();
+
+  // Define a function to get the number of slides to show based on screen size
+  function getSlidesToShow() {
+    if (window.innerWidth >= 1024) {
+      return slidesToShowResponsive.destok; // Desktop
+    } else if (window.innerWidth >= 768) {
+      return slidesToShowResponsive.tablet; // Tablet
+    } else {
+      return slidesToShowResponsive.mobile; // Mobile
     }
-    
-    // Recalculate slides after cloning
-    const allSlides = Array.from(track.children);
-    
-    // Set initial position
-    currentIndex = slidesToShow;
+  }
+
+  // Update slidesToShow when resizing the window
+  window.addEventListener('resize', () => {
+    slidesToShow = getSlidesToShow();
     updateSlidePosition();
-    
-    // Create dots
-    if (dotsContainer && slides.length > 1) {
-      slides.forEach((_, index) => {
-        const dot = document.createElement('button');
-        dot.classList.add('carousel-dot', 'w-3', 'h-3', 'rounded-full', 'bg-gray-300');
-        dot.setAttribute('aria-label', `Slide ${index + 1}`);
-        
-        dot.addEventListener('click', () => {
-          goToSlide(index + slidesToShow);
-        });
-        
-        dotsContainer.appendChild(dot);
-      });
-      
-      updateDots();
-    }
-    
-    // Add event listeners
-    if (prevButton) {
-      prevButton.addEventListener('click', () => {
-        goToSlide(currentIndex - 1);
-      });
-    }
-    
-    if (nextButton) {
-      nextButton.addEventListener('click', () => {
-        goToSlide(currentIndex + 1);
-      });
-    }
-    
-    // Set up autoplay
-    if (autoplay && slides.length > 1) {
-      startAutoplay();
-      
-      container.addEventListener('mouseenter', stopAutoplay);
-      container.addEventListener('mouseleave', startAutoplay);
-      container.addEventListener('touchstart', stopAutoplay);
-      container.addEventListener('touchend', startAutoplay);
-    }
-    
-    // Functions
-    function updateSlidePosition() {
-      const slideWidth = 100 / slidesToShow;
-      const offset = -currentIndex * slideWidth;
-      track.style.transform = `translateX(${offset}%)`;
-      
-      // Set width for each slide
-      allSlides.forEach(slide => {
-        slide.style.flex = `0 0 ${slideWidth}%`;
-      });
-      
-      updateDots();
-    }
-    
-    function updateDots() {
-      if (!dotsContainer) return;
-      
-      const dots = Array.from(dotsContainer.children);
-      const activeDotIndex = (currentIndex - slidesToShow) % slides.length;
-      
-      dots.forEach((dot, index) => {
-        if (index === activeDotIndex) {
-          dot.classList.remove('bg-gray-300');
-          dot.classList.add('bg-blue-600');
-        } else {
-          dot.classList.remove('bg-blue-600');
-          dot.classList.add('bg-gray-300');
-        }
-      });
-    }
-    
-    function goToSlide(index) {
-      stopAutoplay();
-      
-      currentIndex = index;
-      
-      // Handle infinite loop
-      if (currentIndex < slidesToShow) {
-        // Jump to end after animation
-        updateSlidePosition();
-        setTimeout(() => {
-          track.style.transition = 'none';
-          currentIndex = allSlides.length - slidesToShow - (slidesToShow - currentIndex);
-          updateSlidePosition();
-          setTimeout(() => {
-            track.style.transition = 'transform 500ms ease-in-out';
-          }, 50);
-        }, 500);
-      } else if (currentIndex >= allSlides.length - slidesToShow) {
-        // Jump to beginning after animation
-        updateSlidePosition();
-        setTimeout(() => {
-          track.style.transition = 'none';
-          currentIndex = slidesToShow + (currentIndex - (allSlides.length - slidesToShow));
-          updateSlidePosition();
-          setTimeout(() => {
-            track.style.transition = 'transform 500ms ease-in-out';
-          }, 50);
-        }, 500);
-      } else {
-        updateSlidePosition();
-      }
-      
-      startAutoplay();
-    }
-    
-    function startAutoplay() {
-      if (autoplay && slides.length > 1) {
-        stopAutoplay();
-        autoplayInterval = setInterval(() => {
-          goToSlide(currentIndex + 1);
-        }, interval);
-      }
-    }
-    
-    function stopAutoplay() {
-      clearInterval(autoplayInterval);
-    }
   });
+
+  // Clone slides for infinite loop if needed
+  if (slides.length > 1) {
+    // Add clones at the end
+    for (let i = 0; i < slidesToShow; i++) {
+      const clone = slides[i].cloneNode(true);
+      track.appendChild(clone);
+    }
+
+    // Add clones at the beginning
+    for (let i = slides.length - 1; i >= slides.length - slidesToShow; i--) {
+      const clone = slides[i].cloneNode(true);
+      track.insertBefore(clone, track.firstChild);
+    }
+  }
+
+  const allSlides = Array.from(track.children);
+  currentIndex = slidesToShow;
+  updateSlidePosition();
+
+  // Create dots
+  if (dotsContainer && slides.length > 1) {
+    slides.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.classList.add('carousel-dot', 'w-3', 'h-3', 'rounded-full', 'bg-gray-300');
+      dot.setAttribute('aria-label', `Slide ${index + 1}`);
+
+      dot.addEventListener('click', () => {
+        goToSlide(index + slidesToShow);
+      });
+
+      dotsContainer.appendChild(dot);
+    });
+
+    updateDots();
+  }
+
+  // Event listeners for buttons
+  if (prevButton) {
+    prevButton.addEventListener('click', () => {
+      goToSlide(currentIndex - 1);
+    });
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener('click', () => {
+      goToSlide(currentIndex + 1);
+    });
+  }
+
+  // Autoplay setup
+  if (autoplay && slides.length > 1) {
+    startAutoplay();
+
+    container.addEventListener('mouseenter', stopAutoplay);
+    container.addEventListener('mouseleave', startAutoplay);
+    container.addEventListener('touchstart', stopAutoplay);
+    container.addEventListener('touchend', startAutoplay);
+  }
+
+  // Functions
+  function updateSlidePosition() {
+    const slideWidth = 100 / slidesToShow;
+    const offset = -currentIndex * slideWidth;
+    track.style.transform = `translateX(${offset}%)`;
+
+    allSlides.forEach(slide => {
+      slide.style.flex = `0 0 ${slideWidth}%`;
+    });
+
+    updateDots();
+  }
+
+  function updateDots() {
+    if (!dotsContainer) return;
+
+    const dots = Array.from(dotsContainer.children);
+    const activeDotIndex = (currentIndex - slidesToShow) % slides.length;
+
+    dots.forEach((dot, index) => {
+      if (index === activeDotIndex) {
+        dot.classList.remove('bg-gray-300');
+        dot.classList.add('bg-blue-600');
+      } else {
+        dot.classList.remove('bg-blue-600');
+        dot.classList.add('bg-gray-300');
+      }
+    });
+  }
+
+  function goToSlide(index) {
+    stopAutoplay();
+
+    currentIndex = index;
+
+    // Handle infinite loop
+    if (currentIndex < slidesToShow) {
+      updateSlidePosition();
+      setTimeout(() => {
+        track.style.transition = 'none';
+        currentIndex = allSlides.length - slidesToShow - (slidesToShow - currentIndex);
+        updateSlidePosition();
+        setTimeout(() => {
+          track.style.transition = 'transform 500ms ease-in-out';
+        }, 50);
+      }, 500);
+    } else if (currentIndex >= allSlides.length - slidesToShow) {
+      updateSlidePosition();
+      setTimeout(() => {
+        track.style.transition = 'none';
+        currentIndex = slidesToShow + (currentIndex - (allSlides.length - slidesToShow));
+        updateSlidePosition();
+        setTimeout(() => {
+          track.style.transition = 'transform 500ms ease-in-out';
+        }, 50);
+      }, 500);
+    } else {
+      updateSlidePosition();
+    }
+
+    startAutoplay();
+    }
+
+        function startAutoplay() {
+            if (autoplay && slides.length > 1) {
+            stopAutoplay();
+            autoplayInterval = setInterval(() => {
+                goToSlide(currentIndex + 1);
+            }, interval);
+            }
+        }
+
+        function stopAutoplay() {
+            clearInterval(autoplayInterval);
+        }
+    });
+
 </script>
 
 <style>

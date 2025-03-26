@@ -1,5 +1,4 @@
 ---
-import { preview } from "astro";
 import Carousel from "./Carousel.astro";
 
 const featuredProjects = [
@@ -29,7 +28,7 @@ const featuredProjects = [
 		preview: null,
 		code: null,
 		featured: true,
-	},
+	}
 ];
 
 const otherProjects = [
@@ -137,7 +136,11 @@ const otherProjects = [
 				showArrows={false}
 				showDots={false}
 				autoplay={false}
-				slidesToShow={2}
+				slidesToShowResponsive={{
+					mobile: 1,
+					tablet: 2,
+					destok: 2
+				}}
 			>
 				{
 					featuredProjects.map((project) => (
@@ -234,7 +237,12 @@ const otherProjects = [
 				id="other-projects"
 				showArrows={true}
 				showDots={true}
-				slidesToShow={3}
+				autoplay={false}
+				slidesToShowResponsive={{
+					mobile: 1,
+					tablet: 2,
+					destok: 3
+				}}
 			>
 				{
 					otherProjects.map((project) => (

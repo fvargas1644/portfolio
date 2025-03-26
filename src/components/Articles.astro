@@ -58,7 +58,16 @@ const articles = [
     <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Artículos Publicados</h2>
     
     <div class="mb-8">
-      <Carousel id="articles-carousel" showArrows={true} showDots={true} autoplay={true} interval={6000} slidesToShow={3}>
+      <Carousel 
+        id="articles-carousel" 
+        showArrows={true} 
+        showDots={true} 
+        autoplay={true} interval={6000} 
+        slidesToShowResponsive={{
+            mobile: 1,
+            tablet: 2,
+            destok: 3
+        }}>
         {articles.map(article => (
           <div class="carousel-slide px-2">
             <article class="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full">
@@ -108,7 +117,7 @@ const articles = [
 </section>
 
 <style>
-  /* Responsive adjustments for carousel */
+  /* Responsive adjustments for carousel 
   @media (max-width: 1024px) {
     :global(.carousel-container[data-carousel-id="articles-carousel"] .carousel-slides > *) {
       flex-basis: 50% !important;
@@ -121,6 +130,6 @@ const articles = [
       flex-basis: 100% !important;
       min-width: 100% !important;
     }
-  }
+  }*/
 </style>
 
