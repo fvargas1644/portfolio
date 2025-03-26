@@ -34,7 +34,7 @@ const featuredProjects = [
 		description:
 			"Recreación de un ataque de ransomware por medio de Powershell y Bash.",
 		image: "/Ransomware.webp?height=300&width=500",
-		tags: ["Linux", "PowerShell", "Ciberseguridad"],
+		tags: ["Linux", "PowerShell", "Ciberseguridad", "Ransomware", "Malware"],
 		preview: null,
 		code: null,
 		featured: true,
@@ -247,7 +247,8 @@ const otherProjects = [
 				id="other-projects"
 				showArrows={true}
 				showDots={true}
-				autoplay={false}
+				autoplay={true}
+				interval={6000} 
 				slidesToShowResponsive={{
 					mobile: 1,
 					tablet: 2,
