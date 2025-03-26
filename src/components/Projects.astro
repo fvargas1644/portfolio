@@ -28,6 +28,16 @@ const featuredProjects = [
 		preview: null,
 		code: null,
 		featured: true,
+	},
+	{
+		title: "Simulación de Ransomware",
+		description:
+			"Recreación de un ataque de ransomware por medio de Powershell y Bash.",
+		image: "/Ransomware.webp?height=300&width=500",
+		tags: ["Linux", "PowerShell", "Ciberseguridad"],
+		preview: null,
+		code: null,
+		featured: true,
 	}
 ];
 
@@ -133,8 +143,8 @@ const otherProjects = [
 		<div class="mb-16">
 			<Carousel
 				id="featured-projects"
-				showArrows={false}
-				showDots={false}
+				showArrows={true}
+				showDots={true}
 				autoplay={false}
 				slidesToShowResponsive={{
 					mobile: 1,
