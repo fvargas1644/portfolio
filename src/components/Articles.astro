@@ -1,54 +1,23 @@
 ---
 import Carousel from './Carousel.astro';
+import Responsive from './Responsive.astro';
 
 const articles = [
   {
-    title: "Cómo optimizar el rendimiento de aplicaciones React",
-    excerpt: "Aprende técnicas avanzadas para mejorar la velocidad y eficiencia de tus aplicaciones React con estos consejos prácticos.",
-    date: "15 de Marzo, 2023",
-    image: "/placeholder.svg?height=250&width=400",
-    category: "Desarrollo Frontend",
-    url: "#"
+    title: "Automatización del Ataque NTLM Relay: Interceptando Credenciales para Acceso No Autorizado",
+    excerpt: "Con esta herramienta vas a poder automatizar los ataques de NTLM Relay. En este artículo se explicará cómo usar y configurar la herramienta RelayNetCommander diseñada, para automatizar un ataque mediante NTLM Relay.",
+    date: "12 de Febrero, 2024",
+    image: "/ArticleRelayNetCommander.webp?height=250&width=400",
+    category: "Ciberseguridad",
+    url: "https://www.linkedin.com/pulse/automatizaci%C3%B3n-del-ataque-ntlm-relay-la-infiltraci%C3%B3n-vargas-pe%C3%B1aloza-q9zxe/"
   },
   {
-    title: "Introducción a TypeScript para desarrolladores JavaScript",
-    excerpt: "Descubre cómo TypeScript puede mejorar tu flujo de trabajo y ayudarte a escribir código más robusto y mantenible.",
-    date: "28 de Enero, 2023",
-    image: "/placeholder.svg?height=250&width=400",
-    category: "JavaScript",
-    url: "#"
-  },
-  {
-    title: "Arquitectura de microservicios con Node.js",
-    excerpt: "Una guía completa sobre cómo diseñar, implementar y mantener una arquitectura de microservicios utilizando Node.js y Docker.",
-    date: "10 de Diciembre, 2022",
-    image: "/placeholder.svg?height=250&width=400",
-    category: "Backend",
-    url: "#"
-  },
-  {
-    title: "Mejores prácticas de accesibilidad web en 2023",
-    excerpt: "Aprende a crear sitios web inclusivos que cumplan con los estándares WCAG y proporcionen una mejor experiencia para todos los usuarios.",
-    date: "5 de Noviembre, 2022",
-    image: "/placeholder.svg?height=250&width=400",
-    category: "Accesibilidad",
-    url: "#"
-  },
-  {
-    title: "Introducción a Astro: el framework para sitios web modernos",
-    excerpt: "Descubre cómo Astro puede ayudarte a construir sitios web más rápidos con menos JavaScript y una mejor experiencia de desarrollo.",
-    date: "20 de Octubre, 2022",
-    image: "/placeholder.svg?height=250&width=400",
-    category: "Frameworks",
-    url: "#"
-  },
-  {
-    title: "Cómo implementar animaciones eficientes en la web",
-    excerpt: "Aprende a crear animaciones fluidas y eficientes utilizando CSS y JavaScript sin afectar el rendimiento de tu sitio.",
-    date: "15 de Septiembre, 2022",
-    image: "/placeholder.svg?height=250&width=400",
-    category: "CSS",
-    url: "#"
+    title: "Introducción a TypeScript para desarrolladores JavaScriptProtege tu Empresa con Alertas SOC Directas a tu Móvil – ¡Integración Gratis de Gmail y Telegram!",
+    excerpt: "¿Te pierdes entre correos importantes o alertas críticas en medio de un día laboral lleno de distracciones? Descubre en este artículo cómo implementar una solución inteligente que asegura que ningún mensaje prioritario pase desapercibido. Imagina una alarma en tiempo real que persiste en tu móvil hasta que tomes acción. Aprende a integrar Gmail y Telegram para recibir notificaciones críticas y personalizadas, creadas originalmente para analistas de seguridad, pero que puedes adaptar fácilmente a las necesidades de tu empresa. ",
+    date: "18 de Octubre, 2024",
+    image: "/ArticleAlertsFromTelegram.webp?height=250&width=400",
+    category: "Bots Telegram",
+    url: "https://www.linkedin.com/pulse/protege-tu-empresa-con-alertas-soc-directas-m%C3%B3vil-de-vargas-pe%C3%B1aloza-0yvye/"
   }
 ];
 ---
@@ -57,18 +26,7 @@ const articles = [
   <div class="container mx-auto px-4">
     <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Artículos Publicados</h2>
     
-    <div class="mb-8">
-      <Carousel 
-        id="articles-carousel" 
-        showArrows={true} 
-        showDots={true} 
-        autoplay={true} 
-        interval={6000} 
-        slidesToShowResponsive={{
-            mobile: 1,
-            tablet: 2,
-            destok: 3
-        }}>
+    <Responsive>
         {articles.map(article => (
           <div class="carousel-slide px-2">
             <article class="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full">
@@ -103,16 +61,7 @@ const articles = [
           </article>
           </div>
         ))}
-      </Carousel>
-    </div>
-    {/*<div class="text-center mt-12">
-      <a 
-        href="#" 
-        class="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors inline-block"
-      >
-        Ver todos los artículos
-      </a>
-    </div> */}
+    </Responsive>
     
   </div>
 </section>
