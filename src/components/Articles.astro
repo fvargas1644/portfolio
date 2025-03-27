@@ -44,11 +44,12 @@ const articles = [
                 </span>
                 <span class="text-gray-500 text-sm">{article.date}</span>
               </div>
-              <a href={article.url} class="block">
+              <a target="_blank" href={article.url} class="block">
                 <h3 class="text-xl font-bold mb-2 hover:text-blue-600 transition-colors">{article.title}</h3>
               </a>
               <p class="text-gray-600 mb-4 line-clamp-3">{article.excerpt}</p>
               <a 
+                target="_blank"
                 href={article.url} 
                 class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
               >
